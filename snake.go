@@ -39,16 +39,14 @@ func (s *snake) update() {
 	s.x += s.xSpeed * cellSize
 	s.y += s.ySpeed * cellSize
 
-	// FIXME bug: if pressing fast enough then the snake is moving outside of the area!!
-
-	if s.x > windowWidth {
+	if s.x == windowWidth {
 		s.x = 0
 	} else if s.x < 0 {
-		s.x = windowWidth
-	} else if s.y > windowHeight {
+		s.x = windowWidth - s.w
+	} else if s.y == windowHeight {
 		s.y = 0
 	} else if s.y < 0 {
-		s.y = windowHeight
+		s.y = windowHeight - s.w
 	}
 }
 
