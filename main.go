@@ -13,8 +13,6 @@ const (
 
 	windowHeight = 600
 	windowWidth  = 800
-
-	cellSize = 20
 )
 
 func main() {

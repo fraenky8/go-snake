@@ -9,6 +9,8 @@ import (
 
 const (
 	backgroundColor = 0x24292e
+
+	cellSize = 20
 )
 
 type scene struct {
