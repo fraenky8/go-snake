@@ -10,7 +10,8 @@ Food = red
 for fun!
 
 inspired by 
-- The Coding Train - Programmier Challenge #3: Das Snake Spiel: https://www.youtube.com/watch?v=AaGK-fj-BAM
+- The Coding Train - coding challenge #3: The Snake Game: https://www.youtube.com/watch?v=AaGK-fj-BAM
+  - http://thecodingtrain.com/CodingChallenges/003-snake-game-p5.html
 - justforfunc #6: Flappy Gopher: https://www.youtube.com/watch?v=aYkxFbd6luY
   - https://github.com/campoy/flappy-gopher 
 
