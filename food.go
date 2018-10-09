@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 
@@ -19,6 +20,10 @@ type food struct {
 	h int32
 
 	color uint32
+}
+
+func (f *food) String() string {
+	return fmt.Sprintf("Food{x:%v, y:%v}", f.x, f.y)
 }
 
 func newFood() *food {
@@ -40,24 +45,20 @@ func newFood() *food {
 
 func (f *food) update(snake *snake) {
 
-	// FIXME food can appear outside of area!!
-
 	col := windowWidth / cellSize
 	row := windowHeight / cellSize
 
-	f.x = int32(random(1, col+1)) * cellSize
-	f.y = int32(random(1, row+1)) * cellSize
+	f.x = int32(rand.Intn(col)) * cellSize
+	f.y = int32(rand.Intn(row)) * cellSize
 
 	if snake != nil {
 		// FIXME exclude snake's location (incl length/tail)
 	}
+
+	// fmt.Printf("%v\n", f)
 }
 
 func (f *food) draw(surface *sdl.Surface) error {
 	rect := sdl.Rect{X: f.x, Y: f.y, W: f.w, H: f.h}
 	return surface.FillRect(&rect, f.color)
-}
-
-func random(min, max int) int {
-	return rand.Intn(max-min) + min
 }
