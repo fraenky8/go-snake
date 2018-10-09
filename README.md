@@ -17,7 +17,7 @@ go get github.com/fraenky8/go-snake
 go build
 ```
 
-run the build executable
+Then run the binary.
 
 ## Licensing
 
