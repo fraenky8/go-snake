@@ -1,5 +1,5 @@
 # The Snake Game in Go
-early stage, WIP :snake:
+playable :snake:
 
 ![](https://raw.githubusercontent.com/fraenky8/go-snake/master/screenshot.png)
 
@@ -24,7 +24,14 @@ go get github.com/fraenky8/go-snake
 go build
 ```
 
-Then run the binary.
+## Playing
+Run the binary:
+
+```
+./go-snake
+```
+
+Game stops when snake eats itself and a `GAME OVER!` is printed on the command line.
 
 ## Licensing
 
