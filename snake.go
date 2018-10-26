@@ -8,6 +8,10 @@ const (
 	snakeColor = 0xffffff
 )
 
+type cell struct {
+	x, y int32
+}
+
 type snake struct {
 	x      int32
 	y      int32
@@ -17,9 +21,7 @@ type snake struct {
 	w int32
 	h int32
 
-	length int
-
-	color uint32
+	body []cell
 }
 
 func newSnake() *snake {
@@ -30,12 +32,12 @@ func newSnake() *snake {
 		ySpeed: 0,
 		w:      1 * cellSize,
 		h:      1 * cellSize,
-		length: 1,
-		color:  snakeColor,
+		body:   []cell{{x: 0, y: 0}},
 	}
 }
 
 func (s *snake) update() {
+
 	s.x += s.xSpeed * cellSize
 	s.y += s.ySpeed * cellSize
 
@@ -48,11 +50,22 @@ func (s *snake) update() {
 	} else if s.y < 0 {
 		s.y = windowHeight - s.w
 	}
+
+	for i := len(s.body) - 1; i > 0; i-- {
+		s.body[i] = s.body[i-1]
+	}
+	s.body[0].x = s.x
+	s.body[0].y = s.y
 }
 
 func (s *snake) draw(surface *sdl.Surface) error {
-	rect := sdl.Rect{X: s.x, Y: s.y, W: s.w, H: s.h}
-	return surface.FillRect(&rect, s.color)
+	for i := 0; i < len(s.body); i++ {
+		rect := sdl.Rect{X: s.body[i].x, Y: s.body[i].y, W: s.w, H: s.h}
+		if err := surface.FillRect(&rect, snakeColor); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func (s *snake) move(key sdl.Keycode) {
@@ -101,7 +114,7 @@ func (s *snake) moveDown() {
 
 func (s *snake) eat(f *food) bool {
 	if s.x == f.x && s.y == f.y {
-		s.length++
+		s.body = append(s.body, cell{f.x, f.y})
 		return true
 	}
 	return false

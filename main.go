@@ -28,7 +28,10 @@ func run() error {
 	}
 	defer sdl.Quit()
 
-	window, err := sdl.CreateWindow(windowTitle, sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED, windowWidth, windowHeight, sdl.WINDOW_SHOWN)
+	window, err := sdl.CreateWindow(
+		windowTitle, sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED,
+		windowWidth, windowHeight, sdl.WINDOW_SHOWN,
+	)
 	if err != nil {
 		return fmt.Errorf("could not create window: %v", err)
 	}
