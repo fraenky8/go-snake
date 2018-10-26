@@ -51,7 +51,7 @@ func (f *food) update(snake *snake) {
 	f.x = int32(rand.Intn(col)) * cellSize
 	f.y = int32(rand.Intn(row)) * cellSize
 
-	// is nil in the very beginning
+	// is nil at the very beginning
 	if snake != nil {
 		for _, cell := range snake.body {
 			if f.x == cell.x && f.y == cell.y {
