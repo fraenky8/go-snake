@@ -51,11 +51,14 @@ func (f *food) update(snake *snake) {
 	f.x = int32(rand.Intn(col)) * cellSize
 	f.y = int32(rand.Intn(row)) * cellSize
 
+	// is nil in the very beginning
 	if snake != nil {
-		// FIXME exclude snake's location (incl length/tail)
+		for _, cell := range snake.body {
+			if f.x == cell.x && f.y == cell.y {
+				f.update(snake)
+			}
+		}
 	}
-
-	// fmt.Printf("%v\n", f)
 }
 
 func (f *food) draw(surface *sdl.Surface) error {
