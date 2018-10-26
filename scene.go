@@ -57,6 +57,7 @@ func (s *scene) run(events <-chan sdl.Event) <-chan error {
 				s.update()
 
 				if s.snake.isDead() {
+					fmt.Println("GAME OVER!")
 					return
 				}
 

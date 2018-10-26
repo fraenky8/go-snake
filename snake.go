@@ -121,5 +121,10 @@ func (s *snake) eat(f *food) bool {
 }
 
 func (s *snake) isDead() bool {
+	for i := 1; i < len(s.body); i++ {
+		if s.body[i].x == s.body[0].x && s.body[i].y == s.body[0].y {
+			return true
+		}
+	}
 	return false
 }
