@@ -22,6 +22,8 @@ type snake struct {
 	h int32
 
 	body []cell
+
+	isMoving bool
 }
 
 func newSnake() *snake {
@@ -54,8 +56,7 @@ func (s *snake) update() {
 	for i := len(s.body) - 1; i > 0; i-- {
 		s.body[i] = s.body[i-1]
 	}
-	s.body[0].x = s.x
-	s.body[0].y = s.y
+	s.body[0].x, s.body[0].y = s.x, s.y
 }
 
 func (s *snake) draw(surface *sdl.Surface) error {
@@ -69,6 +70,10 @@ func (s *snake) draw(surface *sdl.Surface) error {
 }
 
 func (s *snake) move(key sdl.Keycode) {
+	if s.isMoving {
+		return
+	}
+	s.isMoving = true
 	if key == sdl.K_RIGHT {
 		s.moveRight()
 	} else if key == sdl.K_LEFT {
@@ -78,6 +83,7 @@ func (s *snake) move(key sdl.Keycode) {
 	} else if key == sdl.K_DOWN {
 		s.moveDown()
 	}
+	s.isMoving = false
 }
 
 func (s *snake) moveRight() {
